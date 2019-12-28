@@ -1,0 +1,19 @@
+{
+  "Id": "Policy1577515277603",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1577515274606",
+      "Action": [
+        "s3:PutObject"
+      ],
+      "Effect": "Deny",
+      "Resource": "arn:aws:s3:::testbucket-frompython-1/*",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::195556345987:user/testuser"
+        ]
+      }
+    }
+  ]
+}

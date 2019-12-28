@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#for bucket in $(aws s3api list-buckets --profile admin-analyticshut | jq '.Buckets[].Name' | tr -d \")
+#do
+#echo $bucket
+#echo $(aws s3api get-bucket-tagging --bucket elasticbeanstalk-ap-south-1-195556345987 --profile admin-analyticshut)
+#done
+
+
+for bucket in `aws s3api list-buckets --profile admin-analyticshut | jq .Buckets[].Name | tr -d \"`; do 
+echo $bucket
+    tags=$(aws s3api get-bucket-tagging --bucket elasticbeanstalk-ap-south-1-195556345987 --profile admin-analyticshut | jq -c '.[][] | {(.Key): .Value}' | tr '\n' '\t')
+    echo $bucket '|' $tags
+done
